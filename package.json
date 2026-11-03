@@ -12,5 +12,8 @@
   "type": "commonjs",
   "devDependencies": {
     "supabase": "^2.117.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.18.4"
   }
 }

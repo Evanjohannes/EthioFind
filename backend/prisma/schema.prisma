@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  name         String
+  email        String     @unique
+  passwordHash String
+  role         String     @default("business_owner")
+  createdAt    DateTime   @default(now())
+  businesses   Business[]
+
+  @@map("users")
+}
+
+model Region {
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
+  status     String     @default("active")
+  createdAt  DateTime   @default(now())
+  cities     City[]
+  businesses Business[]
+
+  @@map("regions")
+}
+
+model City {
+  id         Int        @id @default(autoincrement())
+  name       String
+  regionId   Int
+  region     Region     @relation(fields: [regionId], references: [id])
+  status     String     @default("active")
+  createdAt  DateTime   @default(now())
+  businesses Business[]
+
+  @@unique([regionId, name])
+  @@map("cities")
+}
+
+model Category {
+  id               Int        @id @default(autoincrement())
+  name             String     @unique
+  icon             String?
+  parentCategoryId Int?
+  parentCategory   Category?  @relation("CategoryToSub", fields: [parentCategoryId], references: [id])
+  subCategories    Category[] @relation("CategoryToSub")
+  status           String     @default("active")
+  businesses       Business[]
+  createdAt        DateTime   @default(now())
+
+  @@map("categories")
+}
+
+model Business {
+  id          Int      @id @default(autoincrement())
+  name        String
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
+  regionId    Int
+  region      Region   @relation(fields: [regionId], references: [id])
+  cityId      Int
+  city        City     @relation(fields: [cityId], references: [id])
+  ownerId     Int?
+  owner       User?    @relation(fields: [ownerId], references: [id])
+  description String?
+  address     String?
+  latitude    Float?
+  longitude   Float?
+  phone       String?
+  telegram    String?
+  whatsapp    String?
+  website     String?
+  hours       String?
+  isVerified  Boolean  @default(false)
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+
+  @@map("businesses")
+}
