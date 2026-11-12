@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin
+Disallow: /account
+Disallow: /login
+Disallow: /signup
+Disallow: /verify-otp
+Disallow: /add-business
+
+Sitemap:  https://ethiofind.pages.dev//sitemap.xml

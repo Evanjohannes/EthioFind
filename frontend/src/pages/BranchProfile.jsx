@@ -31,6 +31,14 @@ export default function BranchProfile() {
   const [loading, setLoading] = useState(true)
   const [toast, setToast] = useState('')
 
+    useEffect(() => {
+    if (!branch) return
+    document.title = `${branch.businesses.name} Branch ${branch.branch_number} | EthioFind`
+    return () => {
+      document.title = 'EthioFind'
+    }
+  }, [branch])
+
   useEffect(() => {
     async function load() {
       setLoading(true)

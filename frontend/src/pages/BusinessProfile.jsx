@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useBusiness } from '../hooks/useBusiness'
 import { useSaved } from '../hooks/useSaved'
@@ -28,6 +28,14 @@ export default function BusinessProfile() {
   const { business, branches, photos, loading, reload } = useBusiness(id)
   const { savedIds, toggleSave } = useSaved()
   const [toast, setToast] = useState('')
+
+    useEffect(() => {
+    if (!business) return
+    document.title = `${business.name} | EthioFind`
+    return () => {
+      document.title = 'EthioFind'
+    }
+  }, [business])
 
   if (loading) return <p className="p-5 text-text-muted">Loading...</p>
   if (!business) return <p className="p-5 text-text-muted">Business not found.</p>

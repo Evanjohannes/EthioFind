@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>YOUR-URL/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>YOUR-URL/contact</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>YOUR-URL/business/21b682d6-9408-4f1b-b630-39df8c4aa63f</loc>
+    <lastmod>2026-10-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>YOUR-URL/branch/b6498c0a-f033-407c-91e1-7eed7723e63f</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.6</priority>
+  </url>
+</urlset>
